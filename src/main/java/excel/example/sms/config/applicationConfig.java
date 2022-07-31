@@ -10,8 +10,8 @@ public class applicationConfig implements WebMvcConfigurer{
 	        WebMvcConfigurer.super.addCorsMappings(registry);
 	        //L'activation de CORS(resource d'origin croiser)
 	        registry.addMapping("/**")
-	                .allowedOrigins("http://localhost:4200")
-	                .allowedMethods("GET","POST","PATCH");
+	                .allowedOrigins("http://localhost:8100")
+	                .allowedMethods("GET","POST","PATCH","PUT");
 	        //origine autoriser et methodes autoriser
 
 

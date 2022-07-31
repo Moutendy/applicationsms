@@ -27,7 +27,7 @@ public class ContactModel {
 	
 	    @ManyToOne
 	    @JoinColumn(name="USER_ID")
-		private UsersModel userdestinataire;
+		private UsersModel contact;
 	    
-	    private String  namecontact;
+	    private Long  idusercontact;
 }

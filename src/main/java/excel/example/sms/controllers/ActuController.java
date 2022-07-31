@@ -13,21 +13,22 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import excel.example.sms.dto.UserDto;
-import excel.example.sms.services.UserService;
+import excel.example.sms.dto.ActualiterDto;
+import excel.example.sms.services.ActualiterService;
 
 @RestController
-public class UserControllers {
+public class ActuController { 
 
+	
 	@Autowired
-	UserService userService;
+	ActualiterService actualiterService;
 	
-	@PostMapping(value="/userajouter")
-	public ResponseEntity<String>ajouterUser(@RequestBody UserDto user)
+	@PostMapping(value="/sendActu")
+	public ResponseEntity<String>sendActu(@RequestBody ActualiterDto actualiterDto)
 	{
-	if(userService.creationUser(user))
+	if(actualiterService.creationActualiter(actualiterDto))
 	{
-		userService.creationUser(user);
+	
 		return ResponseEntity.status(HttpStatus.OK).body("OK");	
 	}
 
@@ -35,16 +36,30 @@ public class UserControllers {
 		
 	}
 	
-	
-	@GetMapping("/users")
-	ResponseEntity<List<UserDto>> listeusers() {
-	    return ResponseEntity.status(HttpStatus.OK).body(userService.listeUserDtos());
+	@PutMapping(value="/updateActu")
+	public ResponseEntity<String>updateActu(@RequestBody ActualiterDto actualiterDto)
+	{
+	if(actualiterService.updateActualitere(actualiterDto))
+	{
+		
+		return ResponseEntity.status(HttpStatus.OK).body("OK");	
+	}
+	return  ResponseEntity.badRequest().body("Bad request");
+		
 	}
 	
-	@PutMapping(value="/userajouter")
-	public ResponseEntity<String>updateUser(@RequestBody UserDto user)
+	
+	@GetMapping("/actueContact/{iduser}/{idcontact}")
+	ResponseEntity<List<ActualiterDto>> actueContact(@PathVariable Long iduser,@PathVariable long idcontact) {
+	    return ResponseEntity.status(HttpStatus.OK).body(actualiterService.listeActualiter(iduser, idcontact));
+	}
+	
+
+	
+	@DeleteMapping(value="/deleteActualiter/{id}")
+	public ResponseEntity<String>deleteActualiter(@PathVariable Long id)
 	{
-	if(userService.updateUser(user))
+	if(actualiterService.deleteActualiter(id))
 	{
 		
 		return ResponseEntity.status(HttpStatus.OK).body("OK");	
@@ -53,20 +68,8 @@ public class UserControllers {
 	return  ResponseEntity.badRequest().body("Bad request");
 		
 	}
-	
-	
 
-	@DeleteMapping(value="/userdelete")
-	public ResponseEntity<String>deleteUser(@PathVariable Long id)
-	{
-	if(userService.deleteUser(id))
-	{
-		
-		return ResponseEntity.status(HttpStatus.OK).body("OK");	
-	}
-
-	return  ResponseEntity.badRequest().body("Bad request");
-		
-	}
+	
 	
 }
+  

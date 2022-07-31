@@ -20,13 +20,21 @@ public class MessageMapper {
 	@Autowired
 	UserMapper userMapper;
 	
+	@Autowired
+	ContactMapper contactMapper;
+	
 	
 	public MessageDto messageModelToMessageDto(MessageModel message)
 	{
 		MessageDto messagedto=mapper.map(message, MessageDto.class);
-		if(message.getUseremetteur()!=null)
+		if(message.getUserid()!=null)
 		{
-			messagedto.setUseremetteur(userMapper.userToUserdto(message.getUseremetteur()));
+			messagedto.setUserid(userMapper.userToUserdto(message.getUserid()));
+		}
+		
+		if(message.getContactid()!=null)
+		{
+			messagedto.setContactid(contactMapper.contactModelToContactDto(message.getContactid()));
 		}
 		
 		return messagedto;
@@ -36,9 +44,14 @@ public class MessageMapper {
 	{
 		MessageModel message=mapper.map(messagedto, MessageModel.class);
 		
-		if(messagedto.getUseremetteur()!=null)
+		if(messagedto.getUserid()!=null)
 		{
-			message.setUseremetteur(userMapper.userDtoToUser(messagedto.getUseremetteur()));
+			message.setUserid(userMapper.userDtoToUser(messagedto.getUserid()));
+		}
+		
+		if(messagedto.getContactid()!=null)
+		{
+			message.setContactid(contactMapper.contactDtoTocontactModel(messagedto.getContactid()));
 		}
 		return message;
 	}

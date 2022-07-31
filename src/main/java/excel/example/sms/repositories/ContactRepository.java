@@ -12,8 +12,8 @@ import excel.example.sms.model.ContactModel;
 @Repository
 public interface ContactRepository extends JpaRepository<ContactModel, Long>{
 	
-	@Query(value = "SELECT u FROM ContactModel u where u.userdestinataire.name=:name ORDER BY id")
-	List<ContactModel> findAllUsers(@Param("name")String name); 
+	@Query(value = "SELECT u FROM ContactModel u where u.idusercontact=:id ORDER BY id")
+	List<ContactModel> findAllUsers(@Param("id")Long id); 
 	
 	
 }

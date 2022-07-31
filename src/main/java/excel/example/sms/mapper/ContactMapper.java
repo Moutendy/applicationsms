@@ -23,9 +23,9 @@ public class ContactMapper {
 	{
 		ContactModel contact= mapper.map(contactdto, ContactModel.class);
 	
-		if(contactdto.getUserdestinataire()!=null)
+		if(contactdto.getContact()!=null)
 		{
-			contact.setUserdestinataire(userMapper.userDtoToUser(contactdto.getUserdestinataire()));
+			contact.setContact(userMapper.userDtoToUser(contactdto.getContact()));
 		}
 		
 		return contact;
@@ -35,9 +35,9 @@ public class ContactMapper {
 	{
 		ContactDto contact =mapper.map(contactModel, ContactDto.class);
 		
-		if(contactModel.getUserdestinataire()!=null)
+		if(contactModel.getContact()!=null)
 		{
-			contact.setUserdestinataire(userMapper.userToUserdto(contactModel.getUserdestinataire()));
+			contact.setContact(userMapper.userToUserdto(contactModel.getContact()));
 		}
 		return contact;
 	}

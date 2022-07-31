@@ -7,13 +7,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class MessageDto {
+@NoArgsConstructor
+public class ActualiterDto {
+
 	private Long id;
-	private String message;
+	private String actu;
 	private UserDto userid;
 	private ContactDto contactid;
 	private Date createdAt;
-
 }

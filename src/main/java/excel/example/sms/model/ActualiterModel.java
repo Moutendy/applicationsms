@@ -21,16 +21,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "MESSAGE")
-public class MessageModel {
+@Table(name = "ACTUALITE")
+public class ActualiterModel {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")
 	Long id;
 	
-	@Column(name = "message")
-	private String message;
+	@Column(name = "actu")
+	private String actu;
 	
 	@ManyToOne
 	@JoinColumn(name="USER_Id")

@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class ContactDto {
 
 	Long id;
-	private UserDto userdestinataire;
+	private UserDto contact;
     
-    private String  namecontact;
+    private Long  idusercontact;
 }
