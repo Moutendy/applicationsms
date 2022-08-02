@@ -1,34 +1,49 @@
 package excel.example.sms.controllers;
 
+import java.io.File;
+
+import javax.mail.MessagingException;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import excel.example.sms.constante.Constante;
+import excel.example.sms.services.EmailService;
 
 @RestController
 public class SimpleEmailExampleController {
 
-    @Autowired
-    private JavaMailSender emailSender;
-    
-	 @ResponseBody
-	    @RequestMapping("/sendSimpleEmail")
-	    public String sendSimpleEmail() {
+	@Autowired
+	private EmailService emailService;
 
-	        // Create a Simple MailMessage.
-	        SimpleMailMessage message = new SimpleMailMessage();
-	        
-	        message.setTo(Constante.FRIEND_EMAIL);
-	        message.setSubject("Test Simple Email");
-	        message.setText("Hello, Im testing Simple Email");
+	@ResponseBody
+	@RequestMapping("/sendSimpleEmail")
+	public String sendSimpleEmail() {
 
-	        // Send Message!
-	        this.emailSender.send(message);
+		emailService.sendSimpleMessage("noreply@baeldung.com",Constante.FRIEND_EMAIL, "Test Simple Email", "Hello, Guichet R_H");
 
-	        return "Email Sent!";
-	    }
+		return "Email Sent!";
+	}
+	
+	@ResponseBody
+	@RequestMapping("/sendSimpleEmailHtml")
+	public String sendSimpleEmailHtml() throws MessagingException {
+
+		emailService.sendMessageWithHtml();
+
+		return "Email Sent!";
+	}
+	
+	
+
+	@ResponseBody
+	@RequestMapping("/sendSimpleEmailAttachement")
+	public String sendSimpleEmailAttachement() throws MessagingException {
+ File file=new File("Downloads/conceptionguichet_Rh%20(1).pdf");
+		emailService.sendMessageWithAttachment("noreply@baeldung.com",Constante.FRIEND_EMAIL,"Hello, Im testing Simple Email",file.getName());
+
+		return "Email Sent!";
+	}
 }
