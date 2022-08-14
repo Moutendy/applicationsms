@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -31,4 +32,17 @@ public class UsersModel {
 	
 	@Column(name = "PASSWORD")
 	private String password;
+
+	 @Lob
+	 @Column(name = "IMAGE_PROFIL", nullable = true)
+	 private byte[] imageData;
+	 
+
+	 @Column(name = "FILE_NAME", nullable = true)
+	 private String fileName;
+	 
+	 @Column(name = "FILE_TYPE", nullable = true)
+	 private String fileType;
+	
+	
 }

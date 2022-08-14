@@ -3,6 +3,7 @@ package excel.example.sms.mapper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,5 +50,11 @@ public class UserMapper {
 			user.add(userDtoToUser(userdto));
 		}
 		return user;
+	}
+
+
+	public UserDto userToUserdto(Optional<UsersModel> findById) {
+		// TODO Auto-generated method stub
+		return mapper.map(findById, UserDto.class);
 	}
 }
