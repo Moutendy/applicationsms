@@ -12,5 +12,6 @@ public class ContactDto {
 	Long id;
 	private UserDto contact;
     
-    private Long  idusercontact;
+    private Long  myid; 
 }
+ 

@@ -16,4 +16,8 @@ public class ActualiterDto {
 	private UserDto userid;
 	private ContactDto contactid;
 	private Date createdAt;
+
+	private byte[] imageData;
+	private String fileName;
+	private String fileType;
 }

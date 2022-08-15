@@ -1,8 +1,12 @@
 package excel.example.sms.services.impl;
 
+import java.io.IOException;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import excel.example.sms.dto.ActualiterDto;
@@ -13,6 +17,11 @@ import excel.example.sms.services.ActualiterService;
 @Service
 public class ActualiterServiceImpl implements ActualiterService{
 
+	@Value("${actualiter}")
+   	String outPathActualiter;
+	
+	@Value("${slash}")
+    String slash;
 	@Autowired
 	ActualiterRepository actualiterRepository;
 	
@@ -21,10 +30,10 @@ public class ActualiterServiceImpl implements ActualiterService{
 	
 	
 	@Override
-	public boolean creationActualiter(ActualiterDto actualiterDto) {
-		// TODO Auto-generated method stub
-		
+	public boolean creationActualiter(ActualiterDto actualiterDto) throws IOException {
+	
 		actualiterRepository.save(actualiterMapping.actualDtoToActuModel(actualiterDto));
+		
 		return true;
 		
 	}
@@ -57,11 +66,14 @@ public class ActualiterServiceImpl implements ActualiterService{
 		}
 		return false;
 	}
-
+ 
+	@Transactional
 	@Override
 	public List<ActualiterDto> listeActualiter(long user, long contact) {
 		// TODO Auto-generated method stub
 		return actualiterMapping.listactuModelToActuDto(actualiterRepository.listeActualiterModel(contact, user));
 	}
+	
+	
 
 }

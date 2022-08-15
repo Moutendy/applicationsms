@@ -29,5 +29,5 @@ public class ContactModel {
 	    @JoinColumn(name="USER_ID")
 		private UsersModel contact;
 	    
-	    private Long  idusercontact;
+	    private Long  myid;
 }

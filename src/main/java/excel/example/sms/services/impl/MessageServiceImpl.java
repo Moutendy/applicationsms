@@ -2,6 +2,8 @@ package excel.example.sms.services.impl;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -58,6 +60,7 @@ public class MessageServiceImpl implements MessageService{
 		return false;
 	}
 
+	@Transactional
 	@Override
 	public List<MessageDto> messageContact(long user, long contact) {
 		// TODO Auto-generated method stub

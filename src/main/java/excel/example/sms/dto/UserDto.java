@@ -20,4 +20,11 @@ public class UserDto {
 	
 
 	private String password;
+	
+	private byte[] imageData;
+	
+	private String fileName;
+	
+	private String fileType;
+	
 }

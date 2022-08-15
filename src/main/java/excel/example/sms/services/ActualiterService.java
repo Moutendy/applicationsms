@@ -1,12 +1,13 @@
 package excel.example.sms.services;
 
+import java.io.IOException;
 import java.util.List;
 
 import excel.example.sms.dto.ActualiterDto;
 
 public interface ActualiterService {
 
-	  boolean creationActualiter(ActualiterDto actualiterDto);
+	  boolean creationActualiter(ActualiterDto actualiterDto)throws IOException;
 	   
 	  boolean deleteActualiter(Long id);
 	  

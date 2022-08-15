@@ -1,12 +1,14 @@
 package excel.example.sms.services.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import excel.example.sms.dto.UserDto;
 import excel.example.sms.mapper.UserMapper;
+import excel.example.sms.model.UsersModel;
 import excel.example.sms.repositories.UserReposytory;
 import excel.example.sms.services.UserService;
 
@@ -59,6 +61,12 @@ public class UserServiceImpl implements UserService{
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public Optional<UsersModel> profile(Long id) {
+		
+		return userReposytory.findById(id);
 	}
 
 }
